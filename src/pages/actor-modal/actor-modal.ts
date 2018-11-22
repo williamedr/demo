@@ -16,25 +16,33 @@ export class ActorModalPage {
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
-    public navParams: NavParams, 
+    public navParams: NavParams,
     public swapi: SwapiProvider
   ) {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-
-    this.loading.present();
-
+    this.initLoading();
 
     this.actor = navParams.get('item');
     this.extra = 'species';
 
     this.loaded = false;
-    // this.getExtraData();
-    this.loading.dismiss();
+    this.getExtraData();
   }
 
-  private getExtraData() {
+  private initLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    this.loading.present();
+  }
+
+  private hideLoading() {
+    if (this.loading) {
+        this.loading.dismiss();
+    }
+  }
+
+private getExtraData() {
     let reqs = [];
     reqs.push(this.actor.homeworld);
     reqs = reqs.concat(this.actor.species);
@@ -46,7 +54,11 @@ export class ActorModalPage {
       res => {
         this.processActor(res);
         this.loaded = true;
-        this.loading.dismiss();
+        this.hideLoading();
+      },
+      error => {
+        console.log(error);
+        this.hideLoading();
       }
     );
   }
@@ -59,28 +71,28 @@ export class ActorModalPage {
 
     arr = [];
     for (let i = 0; i < this.actor.species.length; i++) {
-      arr.push( res.shift() );
+      arr.push(res.shift());
     }
     this.actor.species = [];
     this.actor.species = this.actor.species.concat(arr);
 
     arr = [];
     for (let i = 0; i < this.actor.vehicles.length; i++) {
-      arr.push( res.shift() );
+      arr.push(res.shift());
     }
     this.actor.vehicles = [];
     this.actor.vehicles = this.actor.vehicles.concat(arr);
 
     arr = [];
     for (let i = 0; i < this.actor.starships.length; i++) {
-      arr.push( res.shift() );
+      arr.push(res.shift());
     }
     this.actor.starships = [];
     this.actor.starships = this.actor.starships.concat(arr);
 
     arr = [];
     for (let i = 0; i < this.actor.films.length; i++) {
-      arr.push( res.shift() );
+      arr.push(res.shift());
     }
     this.actor.films = [];
     this.actor.films = this.actor.films.concat(arr);

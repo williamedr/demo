@@ -73,49 +73,49 @@
   </ion-item>
 
   <div *ngIf="loaded" padding>
-      <ion-segment [(ngModel)]="extra">
-        <ion-segment-button value="species">
-          Species
-        </ion-segment-button>
-        <ion-segment-button value="vehicles" *ngIf="actor.vehicles.length > 0">
-          Vehicles
-        </ion-segment-button>
-        <ion-segment-button value="starships" *ngIf="actor.starships.length > 0">
-          Starships
-        </ion-segment-button>
-        <ion-segment-button value="films">
-          Films
-        </ion-segment-button>
-      </ion-segment>
-    </div>
+    <ion-segment [(ngModel)]="extra">
+      <ion-segment-button value="species">
+        Species
+      </ion-segment-button>
+      <ion-segment-button value="vehicles" *ngIf="actor.vehicles.length > 0">
+        Vehicles
+      </ion-segment-button>
+      <ion-segment-button value="starships" *ngIf="actor.starships.length > 0">
+        Starships
+      </ion-segment-button>
+      <ion-segment-button value="films">
+        Films
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
-    <div [ngSwitch]="extra" *ngIf="loaded">
-        <ion-list *ngSwitchCase="'species'">
-          <ion-item *ngFor="let item of actor.species">
-            <h2>{{ item.name }}</h2>
-          </ion-item>
-        </ion-list>
-      
-        <ion-list *ngSwitchCase="'vehicles'">
-          <ion-item *ngFor="let item of actor.vehicles">
-            <h2>{{ item.name }}</h2>
-          </ion-item>
-        </ion-list>
+  <div [ngSwitch]="extra" *ngIf="loaded">
+    <ion-list *ngSwitchCase="'species'">
+      <ion-item *ngFor="let item of actor.species">
+        <h2>{{ item.name }}</h2>
+      </ion-item>
+    </ion-list>
 
-        <ion-list *ngSwitchCase="'starships'">
-          <ion-item *ngFor="let item of actor.starships">
-            <h2>{{ item.name }}</h2>
-          </ion-item>
-        </ion-list>
+    <ion-list *ngSwitchCase="'vehicles'">
+      <ion-item *ngFor="let item of actor.vehicles">
+        <h2>{{ item.name }}</h2>
+      </ion-item>
+    </ion-list>
 
-        <ion-list *ngSwitchCase="'films'">
-          <ion-item *ngFor="let item of actor.films">
-            <h2>{{ item.title }}</h2>
-          </ion-item>
-        </ion-list>
-      </div>
+    <ion-list *ngSwitchCase="'starships'">
+      <ion-item *ngFor="let item of actor.starships">
+        <h2>{{ item.name }}</h2>
+      </ion-item>
+    </ion-list>
 
-      <div text-center>
-        <button ion-button color="primary" round (click)="close()">Close</button>
-      </div>
+    <ion-list *ngSwitchCase="'films'">
+      <ion-item *ngFor="let item of actor.films">
+        <h2>{{ item.title }}</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div text-center>
+    <button ion-button color="primary" round (click)="close()">Close</button>
+  </div>
 </ion-content>

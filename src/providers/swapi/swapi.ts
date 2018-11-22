@@ -6,15 +6,9 @@ import { Film } from '../../models/film';
 import { People } from '../../models/people';
 import { Specie } from '../../models/specie';
 import { Planet } from '../../models/planet';
-import 'rxjs/add/observable/forkJoin';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 
-/*
-  Generated class for the SwapiProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class SwapiProvider {
 
@@ -33,6 +27,11 @@ export class SwapiProvider {
 
   }
 
+ /**
+ * Get Film by Id. https://swapi.co/api/films/:id
+ *
+ * Return Film Object
+ */
   getFilm(id: number): Promise<Film> {
     return new Promise((resolve, reject) => {
       this.http.get(this.endPoints.films + '/' + id).subscribe(
@@ -46,14 +45,22 @@ export class SwapiProvider {
     });
   }
 
-  getFilms(): Promise<any> {
+ /**
+ * Get Films. https://swapi.co/api/films
+ *
+ * Return Object { count: number, next: string, data: Film[] }
+ *    count: number of elements in array response
+ *    next: Url pointing next page from Films Resource
+ *    data: Film[]
+ */
+getFilms(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.endPoints.films).subscribe(
         data => {
           let res = {
-            count : data['count'],
-            next : data['next'],
-            data : data['results'].map((film) => new Film(film))
+            count: data['count'],
+            next: data['next'],
+            data: data['results'].map((film) => new Film(film))
           };
 
           resolve(res);
@@ -65,7 +72,12 @@ export class SwapiProvider {
     });
   }
 
-  getPeople(id: number): Promise<People> {
+ /**
+ * Get People by Id. https://swapi.co/api/peoples/:id
+ *
+ * Return People Object
+ */
+getPeople(id: number): Promise<People> {
     return new Promise((resolve, reject) => {
       this.http.get(this.endPoints.people + '/' + id).subscribe(
         data => {
@@ -78,14 +90,22 @@ export class SwapiProvider {
     });
   }
 
-  getPeoples(): Promise<any> {
+ /**
+ * Get Peoples. https://swapi.co/api/peoples
+ *
+ * Return Object { count: number, next: string, data: People[] }
+ *    count: number of elements in array response
+ *    next: Url pointing next page from Peoples Resource
+ *    data: People Array
+ */
+getPeoples(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.endPoints.people).subscribe(
         data => {
           let res = {
-            count : data['count'],
-            next : data['next'],
-            data : data['results'].map((people) => new People(people))
+            count: data['count'],
+            next: data['next'],
+            data: data['results'].map((people) => new People(people))
           };
 
           resolve(res);
@@ -98,7 +118,12 @@ export class SwapiProvider {
   }
 
 
-  getPlanet(id: number): Promise<Planet> {
+ /**
+ * Get Planet by Id. https://swapi.co/api/planets/:id
+ *
+ * Return Planet Object
+ */
+getPlanet(id: number): Promise<Planet> {
     return new Promise((resolve, reject) => {
       this.http.get(this.endPoints.planets + '/' + id).subscribe(
         data => {
@@ -111,14 +136,22 @@ export class SwapiProvider {
     });
   }
 
-  getPlanets(): Promise<any> {
+ /**
+ * Get Planets. https://swapi.co/api/planets
+ *
+ * Return Object { count: number, next: string, data: Planet[] }
+ *    count: number of elements in array response
+ *    next: Url pointing next page from Planets Resource
+ *    data: Planet Array
+ */
+getPlanets(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.endPoints.planets).subscribe(
         data => {
           let res = {
-            count : data['count'],
-            next : data['next'],
-            data : data['results'].map((planet) => new Specie(planet))
+            count: data['count'],
+            next: data['next'],
+            data: data['results'].map((planet) => new Specie(planet))
           };
 
           resolve(res);
@@ -130,7 +163,12 @@ export class SwapiProvider {
     });
   }
 
-  getSpecie(id: number): Promise<Specie> {
+ /**
+ * Get Specie by Id. https://swapi.co/api/species/:id
+ *
+ * Return Specie Object
+ */
+getSpecie(id: number): Promise<Specie> {
     return new Promise((resolve, reject) => {
       this.http.get(this.endPoints.species + '/' + id).subscribe(
         data => {
@@ -143,14 +181,22 @@ export class SwapiProvider {
     });
   }
 
-  getSpecies(): Promise<any> {
+ /**
+ * Get Species. https://swapi.co/api/species
+ *
+ * Return Object { count: number, next: string, data: Specie[] }
+ *    count: number of elements in array response
+ *    next: Url pointing next page from Species Resource
+ *    data: Specie Array
+ */
+getSpecies(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.endPoints.species).subscribe(
         data => {
           let res = {
-            count : data['count'],
-            next : data['next'],
-            data : data['results'].map((specie) => new Specie(specie))
+            count: data['count'],
+            next: data['next'],
+            data: data['results'].map((specie) => new Specie(specie))
           };
 
           resolve(res);
@@ -163,7 +209,11 @@ export class SwapiProvider {
   }
 
 
-
+ /**
+ * Get Starship by Id. https://swapi.co/api/starships/:id
+ *
+ * Return Starship Object
+ */
   getStarship(id: number): Promise<Starship> {
     return new Promise((resolve, reject) => {
       this.http.get(this.endPoints.starships + '/' + id).subscribe(
@@ -177,14 +227,22 @@ export class SwapiProvider {
     });
   }
 
-  getStarships(): Promise<any> {
+ /**
+ * Get Starships. https://swapi.co/api/starships
+ *
+ * Return Object { count: number, next: string, data: Starship[] }
+ *    count: number of elements in array response
+ *    next: Url pointing next page from Starships Resource
+ *    data: Starship Array
+ */
+getStarships(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.endPoints.starships).subscribe(
         data => {
           let res = {
-            count : data['count'],
-            next : data['next'],
-            data : data['results'].map((starship) => new Starship(starship))
+            count: data['count'],
+            next: data['next'],
+            data: data['results'].map((starship) => new Starship(starship))
           };
 
           resolve(res);
@@ -196,7 +254,12 @@ export class SwapiProvider {
     });
   }
 
-  getVehicle(id: number): Promise<Vehicle> {
+ /**
+ * Get Vehicle by Id. https://swapi.co/api/vehicles/:id
+ *
+ * Return Vehicle Object
+ */
+getVehicle(id: number): Promise<Vehicle> {
     return new Promise((resolve, reject) => {
       this.http.get(this.endPoints.vehicles + '/' + id).subscribe(
         data => {
@@ -209,14 +272,22 @@ export class SwapiProvider {
     });
   }
 
-  getVehicles(): Promise<any> {
+ /**
+ * Get Vehicles. https://swapi.co/api/vehicles
+ *
+ * Return Object { count: number, next: string, data: Vehicle[] }
+ *    count: number of elements in array response
+ *    next: Url pointing next page from Vehicles Resource
+ *    data: Vehicle[]
+ */
+getVehicles(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.endPoints.vehicles).subscribe(
         data => {
           let res = {
-            count : data['count'],
-            next : data['next'],
-            data : data['results'].map((vehicle) => new Vehicle(vehicle))
+            count: data['count'],
+            next: data['next'],
+            data: data['results'].map((vehicle) => new Vehicle(vehicle))
           };
 
           resolve(res);
@@ -228,7 +299,15 @@ export class SwapiProvider {
     });
   }
 
-  getBulkRequest(urls: string[]) : Observable<any[]> {
+ /**
+ * Make parallels requests to Swapi resources
+ * 
+ * Parameter:
+ *    urls: string[] => Urls Swapi resources array
+ *
+ * Return Object[] from each Url in urls array
+ */
+  getBulkRequest(urls: string[]): Observable<any[]> {
     let reqs = [];
 
     urls.forEach(element => {
@@ -238,7 +317,15 @@ export class SwapiProvider {
     return Observable.forkJoin(reqs);
   }
 
-  getUrl(url: string) {
+ /**
+ * Get object response from Url Swapi resource
+ * 
+ * Parameter:
+ *    url: string => Swapi Url resource
+ *
+ * Return Object from Swapi Url
+ */
+getUrl(url: string) {
     return this.http.get(url);
   }
 
