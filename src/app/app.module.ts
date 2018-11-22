@@ -1,3 +1,4 @@
+import { UtilProvider } from './../providers/util';
 import { HeaderPage } from './../pages/header/header';
 import { HomePage } from './../pages/home/home';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -8,6 +9,7 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { SwapiProvider } from '../providers/swapi/swapi';
 
@@ -33,6 +35,7 @@ import { ActorModalPage } from '../pages/actor-modal/actor-modal';
   imports: [
     BrowserModule,
     HttpClientModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true
     })
@@ -53,7 +56,8 @@ import { ActorModalPage } from '../pages/actor-modal/actor-modal';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SwapiProvider
+    SwapiProvider,
+    UtilProvider
   ]
 })
 export class AppModule {}

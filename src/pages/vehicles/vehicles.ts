@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import { SwapiProvider } from '../../providers/swapi/swapi';
+import { UtilProvider } from '../../providers/util';
 import { Vehicle } from '../../models/vehicle';
 
 @Component({
@@ -15,6 +16,7 @@ export class VehiclesPage {
     constructor(
         public navCtrl: NavController,
         public loadingCtrl: LoadingController,
+        public util: UtilProvider,
         public swapi: SwapiProvider
     ) {
         this.initLoading();
@@ -33,17 +35,12 @@ export class VehiclesPage {
     }
 
     private initLoading() {
-        this.loading = this.loadingCtrl.create({
-            content: 'Please wait...'
-        });
-
+        this.loading = this.util.getLoading(this.loadingCtrl);
         this.loading.present();
     }
 
     private hideLoading() {
-        if (this.loading) {
-            this.loading.dismiss();
-        }
+        this.util.loadDismiss(this.loading);
     }
 
     private getVehicles() {
@@ -56,7 +53,7 @@ export class VehiclesPage {
                 this.hideLoading();
             },
             error => {
-                console.log(error);
+                this.util.showAlertError(null, error.message);
                 this.hideLoading();
             }
         );
@@ -83,7 +80,7 @@ export class VehiclesPage {
                 this.metadata.loading = false;
             },
             error => {
-                console.log(error);
+                this.util.showAlertError(null, error.message);
             }
         );
     }

@@ -1,6 +1,7 @@
 import { SwapiProvider } from './../../providers/swapi/swapi';
 import { Component } from '@angular/core';
 import { NavParams, NavController, LoadingController } from 'ionic-angular';
+import { UtilProvider } from '../../providers/util';
 import { People } from '../../models/people';
 
 @Component({
@@ -16,6 +17,7 @@ export class ActorModalPage {
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
+    public util: UtilProvider,
     public navParams: NavParams,
     public swapi: SwapiProvider
   ) {
@@ -29,20 +31,15 @@ export class ActorModalPage {
   }
 
   private initLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-
+    this.loading = this.util.getLoading(this.loadingCtrl);
     this.loading.present();
   }
 
   private hideLoading() {
-    if (this.loading) {
-        this.loading.dismiss();
-    }
+    this.util.loadDismiss(this.loading);
   }
 
-private getExtraData() {
+  private getExtraData() {
     let reqs = [];
     reqs.push(this.actor.homeworld);
     reqs = reqs.concat(this.actor.species);
@@ -57,7 +54,7 @@ private getExtraData() {
         this.hideLoading();
       },
       error => {
-        console.log(error);
+        this.util.showAlertError(null, error.message);
         this.hideLoading();
       }
     );

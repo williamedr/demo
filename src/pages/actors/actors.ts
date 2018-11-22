@@ -2,6 +2,7 @@ import { ActorModalPage } from './../actor-modal/actor-modal';
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { SwapiProvider } from '../../providers/swapi/swapi';
+import { UtilProvider } from '../../providers/util';
 import { People } from '../../models/people';
 
 @Component({
@@ -16,6 +17,7 @@ export class ActorsPage {
     constructor(
         public navCtrl: NavController,
         public loadingCtrl: LoadingController,
+        public util: UtilProvider,
         public navParams: NavParams,
         public modalCtrl: ModalController,
         public swapi: SwapiProvider
@@ -31,17 +33,12 @@ export class ActorsPage {
     }
 
     private initLoading() {
-        this.loading = this.loadingCtrl.create({
-            content: 'Please wait...'
-        });
-
+        this.loading = this.util.getLoading(this.loadingCtrl);
         this.loading.present();
     }
 
     private hideLoading() {
-        if (this.loading) {
-            this.loading.dismiss();
-        }
+        this.util.loadDismiss(this.loading);
     }
 
     private getPeople(characters: string[]) {
@@ -51,7 +48,7 @@ export class ActorsPage {
                 this.hideLoading();
             },
             error => {
-                console.log(error);
+                this.util.showAlertError(null, error.message);
                 this.hideLoading();
             }
         );
