@@ -1,40 +1,59 @@
+import { HeaderPage } from './../pages/header/header';
+import { HomePage } from './../pages/home/home';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HttpClientModule } from '@angular/common/http';
+
+import { SwapiProvider } from '../providers/swapi/swapi';
+
+import { TabsPage } from '../pages/tabs/tabs';
+import { FilmsPage } from '../pages/films/films';
+import { VehiclesPage } from '../pages/vehicles/vehicles';
+import { StarshipsPage } from '../pages/starships/starships';
+import { ActorsPage } from '../pages/actors/actors';
+import { ActorModalPage } from '../pages/actor-modal/actor-modal';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
-    TabsPage
+    FilmsPage,
+    VehiclesPage,
+    StarshipsPage,
+    ActorsPage,
+    ActorModalPage,
+    TabsPage,
+    HeaderPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpClientModule,
+    IonicModule.forRoot(MyApp, {
+      tabsHideOnSubPages: true
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
-    TabsPage
+    FilmsPage,
+    VehiclesPage,
+    StarshipsPage,
+    ActorsPage,
+    ActorModalPage,
+    TabsPage,
+    HeaderPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SwapiProvider
   ]
 })
 export class AppModule {}

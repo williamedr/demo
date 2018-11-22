@@ -1,0 +1,121 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title text-center>{{ actor.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label floating>Gender</ion-label>
+        <ion-input type="text" readonly value="{{ actor.gender | titlecase }}"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col>
+      <ion-item>
+        <ion-label floating>Birth Year</ion-label>
+        <ion-input type="text" readonly value="{{ actor.birth_year }}"></ion-input>
+      </ion-item>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label floating>Height</ion-label>
+        <ion-input type="text" readonly value="{{ actor.height }} cm"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col>
+      <ion-item>
+        <ion-label floating>Mass</ion-label>
+        <ion-input type="text" readonly value="{{ actor.mass }} Kg"></ion-input>
+      </ion-item>
+    </ion-col>
+
+  </ion-row>
+
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label floating>Hair Color</ion-label>
+        <ion-input type="text" readonly value="{{ actor.hair_color | titlecase }}"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col>
+      <ion-item>
+        <ion-label floating>Skin Color</ion-label>
+        <ion-input type="text" readonly value="{{ actor.skin_color | titlecase }}"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col>
+      <ion-item>
+        <ion-label floating>Eye Color</ion-label>
+        <ion-input type="text" readonly value="{{ actor.eye_color | titlecase }}"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-item *ngIf="actor.homeworld.name">
+    <ion-label floating>Home World</ion-label>
+    <ion-input type="text" readonly value="{{ actor.homeworld.name }}"></ion-input>
+  </ion-item>
+
+  <div *ngIf="loaded" padding>
+      <ion-segment [(ngModel)]="extra">
+        <ion-segment-button value="species">
+          Species
+        </ion-segment-button>
+        <ion-segment-button value="vehicles" *ngIf="actor.vehicles.length > 0">
+          Vehicles
+        </ion-segment-button>
+        <ion-segment-button value="starships" *ngIf="actor.starships.length > 0">
+          Starships
+        </ion-segment-button>
+        <ion-segment-button value="films">
+          Films
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <div [ngSwitch]="extra" *ngIf="loaded">
+        <ion-list *ngSwitchCase="'species'">
+          <ion-item *ngFor="let item of actor.species">
+            <h2>{{ item.name }}</h2>
+          </ion-item>
+        </ion-list>
+      
+        <ion-list *ngSwitchCase="'vehicles'">
+          <ion-item *ngFor="let item of actor.vehicles">
+            <h2>{{ item.name }}</h2>
+          </ion-item>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'starships'">
+          <ion-item *ngFor="let item of actor.starships">
+            <h2>{{ item.name }}</h2>
+          </ion-item>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'films'">
+          <ion-item *ngFor="let item of actor.films">
+            <h2>{{ item.title }}</h2>
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <div text-center>
+        <button ion-button color="primary" round (click)="close()">Close</button>
+      </div>
+</ion-content>

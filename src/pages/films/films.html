@@ -1,0 +1,30 @@
+<ion-header>
+  <header [title]="'Films'"></header>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let item of films" style="border-radius: 25px;">
+    <ion-card-content no-padding>
+      <ion-item>
+        <div item-start>
+            <h1>{{ item.title }}</h1>
+            <h2>Episode {{ item.episode_id }} - {{ item.year }}</h2>
+            <h2>{{ item.director }}</h2>
+          </div>
+
+          <div item-end>
+            <button ion-button icon-start (click)="listActors(item)" color="primary" round>
+                <ion-icon name="people"></ion-icon>
+                Cast
+            </button>
+          </div>
+        </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Loading Films...">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
+</ion-content>

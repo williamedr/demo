@@ -14,3 +14,57 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+ion-content {
+	background-color: black !important;
+}
+
+.toolbar-title.toolbar-title-md, 
+.toolbar-title.toolbar-title-ios, 
+.toolbar-title.toolbar-title-wp {
+	color: color($colors, dark);
+}
+
+ion-header ion-icon.back-button-icon.icon {
+    color: color($colors, dark);
+}
+
+.tabbar {
+	a.tab-button[aria-selected=true] {
+		color: color($colors, secondary);
+		.tab-button-text,
+		.tab-button-icon {
+			color: color($colors, secondary);
+		}
+	}
+
+	a.tab-button[aria-selected=false] {
+		color: color($colors, dark);
+		.tab-button-text,
+		.tab-button-icon {
+			color: color($colors, dark);
+		}
+	}
+}
+
+button {
+	color: color($colors, dark) !important;
+}
+
+ion-card {
+	border: 1px solid color($colors, primary);
+	background-color: transparent !important;
+
+	h1 {
+		color: color($colors, secondary) !important;
+		font-size: 2rem !important;
+	}
+
+	h2 {
+		color: color($colors, cyan) !important;
+	}
+
+	ion-item {
+		background-color: transparent !important;
+	}
+}

@@ -1,0 +1,28 @@
+<ion-header>
+  <header [title]="'Characters'"></header>
+</ion-header>
+
+<ion-content>
+
+  <ion-list no-lines padding>
+    <ion-item *ngFor="let item of actors" (click)="selectItem(item)">
+      <div item-start>
+        <h1>{{ item.name }}</h1>
+      </div>
+  
+      <div item-start>
+        <ion-icon name="male" color="male" *ngIf="item.gender === 'male'"></ion-icon>
+        <ion-icon name="female" color="female" *ngIf="item.gender === 'female'"></ion-icon>
+      </div>
+  
+      <div item-end>
+        <ion-icon name="open" color="cyan"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <div text-center>
+    <button ion-button color="primary" round navPop>Back</button>
+  </div>
+
+</ion-content>

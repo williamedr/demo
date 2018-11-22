@@ -1,0 +1,23 @@
+page-actor-modal {
+
+	ion-item {
+        background-color: transparent !important;
+
+		ion-input {
+			color: color($colors, secondary) !important;
+		}
+	}
+
+	h1 {
+        color: color($colors, secondary) !important;
+        font-size: 2rem !important;
+    }
+
+	h2 {
+        color: color($colors, cyan) !important;
+    }
+
+	div.item-inner {
+		border-bottom: none !important;
+	}
+}

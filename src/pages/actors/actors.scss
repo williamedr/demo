@@ -1,0 +1,16 @@
+page-actors {
+	ion-icon {
+        font-size: 30px;
+    }
+
+    ion-item {
+        background-color: transparent !important;
+        border-bottom: 1px solid color($colors, primary) !important;
+    }
+
+    h1 {
+        color: color($colors, secondary) !important;
+        font-size: 2rem !important;
+    }
+
+}
