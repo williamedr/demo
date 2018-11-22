@@ -1,7 +1,7 @@
 {
-  "name": "miapp",
+  "name": "star-wars",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "William Dominguez",
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
